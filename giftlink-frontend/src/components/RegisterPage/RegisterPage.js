@@ -24,6 +24,13 @@ function RegisterPage() {
   const { setIsLoggedIn } = useAppContext();
 
   const handleRegister = async () => {
+    // ✅ Basic email format validation using regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setShowerr("Invalid email format");
+      return;
+    }
+
     const response = await fetch(`${urlConfig.backendUrl}/api/auth/register`, {
       //Step 1 - Task 6
       method: "POST",

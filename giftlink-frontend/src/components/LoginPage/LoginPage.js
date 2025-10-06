@@ -27,6 +27,14 @@ function LoginPage() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
+    // ✅ Basic email format validation using regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setIncorrect("Invalid email format");
+      return;
+    }
+
     //api call
     const res = await fetch(`${urlConfig.backendUrl}/api/auth/login`, {
       //Step 1 - Task 7
